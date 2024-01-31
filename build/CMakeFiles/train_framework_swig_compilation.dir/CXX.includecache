@@ -1,0 +1,36 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/mirror/wgz/swig_admmcomlkit_success/src/train_framework.h
+map
+-
+string
+-
+sstream
+-
+fstream
+-
+cstring
+-
+mpi.h
+-
+cmath
+-
+vector
+-
+assert.h
+-
+stdlib.h
+-
+
+/mirror/wgz/swig_admmcomlkit_success/src/train_framework.i
+train_framework.h
+/mirror/wgz/swig_admmcomlkit_success/src/train_framework.h
+train_framework.h
+/mirror/wgz/swig_admmcomlkit_success/src/train_framework.h
+
