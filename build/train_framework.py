@@ -436,8 +436,8 @@ class ADMM(object):
     thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
     __repr__ = _swig_repr
 
-    def __init__(self, args, train_features, ytrain, test_features, ytest, dimension, optimizer, beta):
-        _train_framework.ADMM_swiginit(self, _train_framework.new_ADMM(args, train_features, ytrain, test_features, ytest, dimension, optimizer, beta))
+    def __init__(self, args, train_features, ytrain, test_features, ytest, dimension, optimizer, beta, comm):
+        _train_framework.ADMM_swiginit(self, _train_framework.new_ADMM(args, train_features, ytrain, test_features, ytest, dimension, optimizer, beta, comm))
     __swig_destroy__ = _train_framework.delete_ADMM
 
     def alpha_update(self, new_x, x_old, sumx):
@@ -468,5 +468,8 @@ _train_framework.ADMM_swigregister(ADMM)
 
 def test_main(comm):
     return _train_framework.test_main(comm)
+
+def test_main2(comm):
+    return _train_framework.test_main2(comm)
 
 

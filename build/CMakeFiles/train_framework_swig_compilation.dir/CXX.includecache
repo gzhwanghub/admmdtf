@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/mirror/wgz/swig_admmcomlkit_success/src/train_framework.h
+/mirror/wgz/admmdtf/src/train_framework.h
 map
 -
 string
@@ -28,9 +28,9 @@ assert.h
 stdlib.h
 -
 
-/mirror/wgz/swig_admmcomlkit_success/src/train_framework.i
+/mirror/wgz/admmdtf/src/train_framework.i
 train_framework.h
-/mirror/wgz/swig_admmcomlkit_success/src/train_framework.h
+/mirror/wgz/admmdtf/src/train_framework.h
 train_framework.h
-/mirror/wgz/swig_admmcomlkit_success/src/train_framework.h
+/mirror/wgz/admmdtf/src/train_framework.h
 

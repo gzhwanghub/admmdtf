@@ -1,5 +1,5 @@
 CMakeFiles/train_framework.dir/cpp/train_frameworkPYTHON_wrap.cxx.o: \
- /mirror/wgz/swig_admmcomlkit_success/build/cpp/train_frameworkPYTHON_wrap.cxx \
+ /mirror/wgz/admmdtf/build/cpp/train_frameworkPYTHON_wrap.cxx \
  /usr/include/stdc-predef.h /usr/include/python3.10/Python.h \
  /usr/include/python3.10/patchlevel.h /usr/include/python3.10/pyconfig.h \
  /usr/include/x86_64-linux-gnu/python3.10/pyconfig.h \
@@ -276,8 +276,8 @@ CMakeFiles/train_framework.dir/cpp/train_frameworkPYTHON_wrap.cxx.o: \
  /usr/include/c++/11/ext/string_conversions.h /usr/include/c++/11/cstdio \
  /usr/include/c++/11/cerrno /usr/include/c++/11/bits/charconv.h \
  /usr/include/c++/11/bits/basic_string.tcc \
- /mirror/wgz/swig_admmcomlkit_success/src/train_framework.h \
- /usr/include/c++/11/map /usr/include/c++/11/bits/stl_tree.h \
+ /mirror/wgz/admmdtf/src/train_framework.h /usr/include/c++/11/map \
+ /usr/include/c++/11/bits/stl_tree.h \
  /usr/include/c++/11/ext/aligned_buffer.h \
  /usr/include/c++/11/bits/node_handle.h \
  /usr/include/c++/11/bits/stl_map.h /usr/include/c++/11/tuple \

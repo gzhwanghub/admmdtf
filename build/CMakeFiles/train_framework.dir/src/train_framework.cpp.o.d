@@ -1,7 +1,6 @@
 CMakeFiles/train_framework.dir/src/train_framework.cpp.o: \
- /mirror/wgz/swig_admmcomlkit_success/src/train_framework.cpp \
- /usr/include/stdc-predef.h /usr/include/mpi.h \
- /usr/include/c++/11/cstdint \
+ /mirror/wgz/admmdtf/src/train_framework.cpp /usr/include/stdc-predef.h \
+ /usr/include/mpi.h /usr/include/c++/11/cstdint \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
  /usr/include/features.h /usr/include/features-time64.h \
@@ -178,8 +177,8 @@ CMakeFiles/train_framework.dir/src/train_framework.cpp.o: \
  /usr/include/x86_64-linux-gnu/bits/statx-generic.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_statx_timestamp.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_statx.h \
- /mirror/wgz/swig_admmcomlkit_success/src/train_framework.h \
- /usr/include/c++/11/map /usr/include/c++/11/bits/stl_tree.h \
+ /mirror/wgz/admmdtf/src/train_framework.h /usr/include/c++/11/map \
+ /usr/include/c++/11/bits/stl_tree.h \
  /usr/include/c++/11/ext/aligned_buffer.h \
  /usr/include/c++/11/bits/node_handle.h \
  /usr/include/c++/11/bits/stl_map.h /usr/include/c++/11/tuple \

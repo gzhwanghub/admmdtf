@@ -703,7 +703,7 @@ class ADMM {
 public:
 
     ADMM(args_t *args, vector<struct SparseFeature> train_features, comlkit::Vector ytrain,
-         vector<struct SparseFeature> test_features, comlkit::Vector ytest, int dimension, int optimizer, double beta);
+         vector<struct SparseFeature> test_features, comlkit::Vector ytest, int dimension, int optimizer, double beta, MPI_Comm comm);
 
     ~ADMM();
 
@@ -739,12 +739,13 @@ private:
     int nodesOfGroup;
     // Group Strategy
     MPI_Comm SUBGRP_COMM_ODD_;
-    MPI_Comm new_comm2_;
+    MPI_Comm comm_;
     MPI_Comm SUBGRP_COMM_EVEN_;
     int *worker_ranks_;
 };
 
 void test_main(MPI_Comm comm);
+void test_main2(MPI_Comm comm);
 
 //int sayhello(MPI_Comm comm);
 

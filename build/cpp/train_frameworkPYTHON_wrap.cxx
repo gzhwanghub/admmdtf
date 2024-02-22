@@ -10992,6 +10992,7 @@ SWIGINTERN PyObject *_wrap_new_ADMM(PyObject *SWIGUNUSEDPARM(self), PyObject *ar
   int arg6 ;
   int arg7 ;
   double arg8 ;
+  MPI_Comm arg9 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   void *argp2 ;
@@ -11008,10 +11009,10 @@ SWIGINTERN PyObject *_wrap_new_ADMM(PyObject *SWIGUNUSEDPARM(self), PyObject *ar
   int ecode7 = 0 ;
   double val8 ;
   int ecode8 = 0 ;
-  PyObject *swig_obj[8] ;
+  PyObject *swig_obj[9] ;
   ADMM *result = 0 ;
   
-  if (!SWIG_Python_UnpackTuple(args, "new_ADMM", 8, 8, swig_obj)) SWIG_fail;
+  if (!SWIG_Python_UnpackTuple(args, "new_ADMM", 9, 9, swig_obj)) SWIG_fail;
   res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_args_t, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_ADMM" "', argument " "1"" of type '" "args_t *""'"); 
@@ -11084,7 +11085,16 @@ SWIGINTERN PyObject *_wrap_new_ADMM(PyObject *SWIGUNUSEDPARM(self), PyObject *ar
     SWIG_exception_fail(SWIG_ArgError(ecode8), "in method '" "new_ADMM" "', argument " "8"" of type '" "double""'");
   } 
   arg8 = static_cast< double >(val8);
-  result = (ADMM *)new ADMM(arg1,arg2,arg3,arg4,arg5,arg6,arg7,arg8);
+  {
+    MPI_Comm *ptr = (MPI_Comm *)0;
+    int res = SWIG_AsPtr_MPI_Comm(swig_obj[8], &ptr);
+    if (!SWIG_IsOK(res) || !ptr) {
+      SWIG_exception_fail(SWIG_ArgError((ptr ? res : SWIG_TypeError)), "in method '" "new_ADMM" "', argument " "9"" of type '" "MPI_Comm""'"); 
+    }
+    arg9 = *ptr;
+    if (SWIG_IsNewObj(res)) delete ptr;
+  }
+  result = (ADMM *)new ADMM(arg1,arg2,arg3,arg4,arg5,arg6,arg7,arg8,arg9);
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_ADMM, SWIG_POINTER_NEW |  0 );
   return resultobj;
 fail:
@@ -11686,6 +11696,30 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_test_main2(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  MPI_Comm arg1 ;
+  PyObject *swig_obj[1] ;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  {
+    MPI_Comm *ptr = (MPI_Comm *)0;
+    int res = SWIG_AsPtr_MPI_Comm(swig_obj[0], &ptr);
+    if (!SWIG_IsOK(res) || !ptr) {
+      SWIG_exception_fail(SWIG_ArgError((ptr ? res : SWIG_TypeError)), "in method '" "test_main2" "', argument " "1"" of type '" "MPI_Comm""'"); 
+    }
+    arg1 = *ptr;
+    if (SWIG_IsNewObj(res)) delete ptr;
+  }
+  test_main2(arg1);
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
 static PyMethodDef SwigMethods[] = {
 	 { "SWIG_PyInstanceMethod_New", SWIG_PyInstanceMethod_New, METH_O, NULL},
 	 { "SparseFeature_index_set", _wrap_SparseFeature_index_set, METH_VARARGS, NULL},
@@ -11876,6 +11910,7 @@ static PyMethodDef SwigMethods[] = {
 	 { "ADMM_swigregister", ADMM_swigregister, METH_O, NULL},
 	 { "ADMM_swiginit", ADMM_swiginit, METH_VARARGS, NULL},
 	 { "test_main", _wrap_test_main, METH_O, NULL},
+	 { "test_main2", _wrap_test_main2, METH_O, NULL},
 	 { NULL, NULL, 0, NULL }
 };
 

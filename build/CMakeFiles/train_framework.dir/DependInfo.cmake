@@ -8,8 +8,8 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/mirror/wgz/swig_admmcomlkit_success/build/cpp/train_frameworkPYTHON_wrap.cxx" "CMakeFiles/train_framework.dir/cpp/train_frameworkPYTHON_wrap.cxx.o" "gcc" "CMakeFiles/train_framework.dir/cpp/train_frameworkPYTHON_wrap.cxx.o.d"
-  "/mirror/wgz/swig_admmcomlkit_success/src/train_framework.cpp" "CMakeFiles/train_framework.dir/src/train_framework.cpp.o" "gcc" "CMakeFiles/train_framework.dir/src/train_framework.cpp.o.d"
+  "/mirror/wgz/admmdtf/build/cpp/train_frameworkPYTHON_wrap.cxx" "CMakeFiles/train_framework.dir/cpp/train_frameworkPYTHON_wrap.cxx.o" "gcc" "CMakeFiles/train_framework.dir/cpp/train_frameworkPYTHON_wrap.cxx.o.d"
+  "/mirror/wgz/admmdtf/src/train_framework.cpp" "CMakeFiles/train_framework.dir/src/train_framework.cpp.o" "gcc" "CMakeFiles/train_framework.dir/src/train_framework.cpp.o.d"
   )
 
 # Targets to which this target links.

@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /mirror/wgz/swig_admmcomlkit_success
+CMAKE_SOURCE_DIR = /mirror/wgz/admmdtf
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /mirror/wgz/swig_admmcomlkit_success/build
+CMAKE_BINARY_DIR = /mirror/wgz/admmdtf/build
 
 # Utility rule file for train_framework_swig_compilation.
 
@@ -70,10 +70,10 @@ CMakeFiles/train_framework_swig_compilation: CMakeFiles/train_framework.dir/trai
 
 CMakeFiles/train_framework.dir/train_frameworkPYTHON.stamp: ../src/train_framework.i
 CMakeFiles/train_framework.dir/train_frameworkPYTHON.stamp: ../src/train_framework.i
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/mirror/wgz/swig_admmcomlkit_success/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Swig compile src/train_framework.i for python"
-	/usr/bin/cmake -E make_directory /mirror/wgz/swig_admmcomlkit_success/build/CMakeFiles/train_framework.dir /mirror/wgz/swig_admmcomlkit_success/build /mirror/wgz/swig_admmcomlkit_success/build/cpp
-	/usr/bin/cmake -E touch /mirror/wgz/swig_admmcomlkit_success/build/CMakeFiles/train_framework.dir/train_frameworkPYTHON.stamp
-	/usr/bin/cmake -E env SWIG_LIB=/usr/share/swig4.0 /usr/bin/swig4.0 -python -outdir /mirror/wgz/swig_admmcomlkit_success/build -c++ -interface _train_framework -I/usr/include/python3.10 -I/home/cluster/anaconda3/lib/python3.7/site-packages/mpi4py/include -I/mirror/wgz/swig_admmcomlkit_success/src -o /mirror/wgz/swig_admmcomlkit_success/build/cpp/train_frameworkPYTHON_wrap.cxx /mirror/wgz/swig_admmcomlkit_success/src/train_framework.i
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/mirror/wgz/admmdtf/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Swig compile src/train_framework.i for python"
+	/usr/bin/cmake -E make_directory /mirror/wgz/admmdtf/build/CMakeFiles/train_framework.dir /mirror/wgz/admmdtf/build /mirror/wgz/admmdtf/build/cpp
+	/usr/bin/cmake -E touch /mirror/wgz/admmdtf/build/CMakeFiles/train_framework.dir/train_frameworkPYTHON.stamp
+	/usr/bin/cmake -E env SWIG_LIB=/usr/share/swig4.0 /usr/bin/swig4.0 -python -outdir /mirror/wgz/admmdtf/build -c++ -interface _train_framework -I/usr/include/python3.10 -I/home/cluster/anaconda3/lib/python3.7/site-packages/mpi4py/include -I/mirror/wgz/admmdtf/src -o /mirror/wgz/admmdtf/build/cpp/train_frameworkPYTHON_wrap.cxx /mirror/wgz/admmdtf/src/train_framework.i
 
 train_framework_swig_compilation: CMakeFiles/train_framework.dir/train_frameworkPYTHON.stamp
 train_framework_swig_compilation: CMakeFiles/train_framework_swig_compilation
@@ -89,6 +89,6 @@ CMakeFiles/train_framework_swig_compilation.dir/clean:
 .PHONY : CMakeFiles/train_framework_swig_compilation.dir/clean
 
 CMakeFiles/train_framework_swig_compilation.dir/depend:
-	cd /mirror/wgz/swig_admmcomlkit_success/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /mirror/wgz/swig_admmcomlkit_success /mirror/wgz/swig_admmcomlkit_success /mirror/wgz/swig_admmcomlkit_success/build /mirror/wgz/swig_admmcomlkit_success/build /mirror/wgz/swig_admmcomlkit_success/build/CMakeFiles/train_framework_swig_compilation.dir/DependInfo.cmake --color=$(COLOR)
+	cd /mirror/wgz/admmdtf/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /mirror/wgz/admmdtf /mirror/wgz/admmdtf /mirror/wgz/admmdtf/build /mirror/wgz/admmdtf/build /mirror/wgz/admmdtf/build/CMakeFiles/train_framework_swig_compilation.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/train_framework_swig_compilation.dir/depend
 

@@ -55,7 +55,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/mirror/wgz/swig_admmcomlkit_success/cmake-build-debug"
+			"value" : "/mirror/wgz/admmdtf/cmake-build-debug"
 		},
 		{
 			"name" : "CMAKE_CACHE_MAJOR_VERSION",
@@ -543,7 +543,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/mirror/wgz/swig_admmcomlkit_success/cmake-build-debug/CMakeFiles/pkgRedirects"
+			"value" : "/mirror/wgz/admmdtf/cmake-build-debug/CMakeFiles/pkgRedirects"
 		},
 		{
 			"name" : "CMAKE_GENERATOR",
@@ -603,7 +603,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/mirror/wgz/swig_admmcomlkit_success"
+			"value" : "/mirror/wgz/admmdtf"
 		},
 		{
 			"name" : "CMAKE_INSTALL_PREFIX",
@@ -1327,7 +1327,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/mirror/wgz/swig_admmcomlkit_success/cmake-build-debug"
+			"value" : "/mirror/wgz/admmdtf/cmake-build-debug"
 		},
 		{
 			"name" : "train_framework_IS_TOP_LEVEL",
@@ -1363,7 +1363,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/mirror/wgz/swig_admmcomlkit_success"
+			"value" : "/mirror/wgz/admmdtf"
 		}
 	],
 	"kind" : "cache",
