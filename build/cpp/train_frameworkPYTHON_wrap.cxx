@@ -10694,6 +10694,7 @@ SWIGINTERN PyObject *_wrap_GroupStrategy_MasterNodes(PyObject *SWIGUNUSEDPARM(se
   int arg3 ;
   int arg4 ;
   int arg5 ;
+  MPI_Comm arg6 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   int val2 ;
@@ -10704,9 +10705,9 @@ SWIGINTERN PyObject *_wrap_GroupStrategy_MasterNodes(PyObject *SWIGUNUSEDPARM(se
   int ecode4 = 0 ;
   int val5 ;
   int ecode5 = 0 ;
-  PyObject *swig_obj[5] ;
+  PyObject *swig_obj[6] ;
   
-  if (!SWIG_Python_UnpackTuple(args, "GroupStrategy_MasterNodes", 5, 5, swig_obj)) SWIG_fail;
+  if (!SWIG_Python_UnpackTuple(args, "GroupStrategy_MasterNodes", 6, 6, swig_obj)) SWIG_fail;
   res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_GroupStrategy, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GroupStrategy_MasterNodes" "', argument " "1"" of type '" "GroupStrategy *""'"); 
@@ -10732,7 +10733,16 @@ SWIGINTERN PyObject *_wrap_GroupStrategy_MasterNodes(PyObject *SWIGUNUSEDPARM(se
     SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "GroupStrategy_MasterNodes" "', argument " "5"" of type '" "int""'");
   } 
   arg5 = static_cast< int >(val5);
-  (arg1)->MasterNodes(arg2,arg3,arg4,arg5);
+  {
+    MPI_Comm *ptr = (MPI_Comm *)0;
+    int res = SWIG_AsPtr_MPI_Comm(swig_obj[5], &ptr);
+    if (!SWIG_IsOK(res) || !ptr) {
+      SWIG_exception_fail(SWIG_ArgError((ptr ? res : SWIG_TypeError)), "in method '" "GroupStrategy_MasterNodes" "', argument " "6"" of type '" "MPI_Comm""'"); 
+    }
+    arg6 = *ptr;
+    if (SWIG_IsNewObj(res)) delete ptr;
+  }
+  (arg1)->MasterNodes(arg2,arg3,arg4,arg5,arg6);
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -11720,6 +11730,30 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_test_main3(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  MPI_Comm arg1 ;
+  PyObject *swig_obj[1] ;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  {
+    MPI_Comm *ptr = (MPI_Comm *)0;
+    int res = SWIG_AsPtr_MPI_Comm(swig_obj[0], &ptr);
+    if (!SWIG_IsOK(res) || !ptr) {
+      SWIG_exception_fail(SWIG_ArgError((ptr ? res : SWIG_TypeError)), "in method '" "test_main3" "', argument " "1"" of type '" "MPI_Comm""'"); 
+    }
+    arg1 = *ptr;
+    if (SWIG_IsNewObj(res)) delete ptr;
+  }
+  test_main3(arg1);
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
 static PyMethodDef SwigMethods[] = {
 	 { "SWIG_PyInstanceMethod_New", SWIG_PyInstanceMethod_New, METH_O, NULL},
 	 { "SparseFeature_index_set", _wrap_SparseFeature_index_set, METH_VARARGS, NULL},
@@ -11911,6 +11945,7 @@ static PyMethodDef SwigMethods[] = {
 	 { "ADMM_swiginit", ADMM_swiginit, METH_VARARGS, NULL},
 	 { "test_main", _wrap_test_main, METH_O, NULL},
 	 { "test_main2", _wrap_test_main2, METH_O, NULL},
+	 { "test_main3", _wrap_test_main3, METH_O, NULL},
 	 { NULL, NULL, 0, NULL }
 };
 

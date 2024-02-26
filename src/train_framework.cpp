@@ -1740,7 +1740,7 @@ void GroupStrategy::changeGroup(vector<vector<int>> &data, int node, vector<int>
     data.push_back(vec);
 }
 
-void GroupStrategy::MasterNodes(int procnum, int nodesOfGroup, int DynamicGroup, int maxIteration) {
+void GroupStrategy::MasterNodes(int procnum, int nodesOfGroup, int DynamicGroup, int maxIteration, MPI_Comm comm) {
     double *node_beforeTime;
     double *node_afterTime;
     double *node_caltime; // It is judged as a slow node for the packet recorder to record a single calculation time of each node.
@@ -1768,9 +1768,9 @@ void GroupStrategy::MasterNodes(int procnum, int nodesOfGroup, int DynamicGroup,
         nodes.push_back(i);
     Group = divideGroup(nodes, (procnum - 1) / nodesOfGroup);
     while (true) {
-        MPI_Probe(MPI_ANY_SOURCE, 1, MPI_COMM_WORLD, &status);
+        MPI_Probe(MPI_ANY_SOURCE, 1, comm, &status);
         nodetemp = status.MPI_SOURCE;
-        MPI_Recv(&iter, 1, MPI_INT, nodetemp, 1, MPI_COMM_WORLD, &status);
+        MPI_Recv(&iter, 1, MPI_INT, nodetemp, 1, comm, &status);
         vector<int> tempVec;
         if (DynamicGroup == 1) {
             // Re-modify some grouping methods according to the node that sent for the first time in each iteration and the last calculation time.
@@ -1821,7 +1821,7 @@ void GroupStrategy::MasterNodes(int procnum, int nodesOfGroup, int DynamicGroup,
             sendNodes[tempIndex++] = tempVec[v];
         }
         //cout<<endl;
-        MPI_Send(sendNodes, nodesOfGroup, MPI_INT, nodetemp, 2, MPI_COMM_WORLD);
+        MPI_Send(sendNodes, nodesOfGroup, MPI_INT, nodetemp, 2, comm);
         c++;
         if (c > maxIteration * (procnum - 1)) {
             break;
@@ -2161,9 +2161,10 @@ void test_main(MPI_Comm comm) {
 //    std::string test_data_path = properties.GetString("test_data_path");
 //
 //    // The last node acts as a group generator. No file reads are required.
+    cout << "myid=" << myid << endl;
     if (myid == procnum - 1) {
         GroupStrategy group_trategy(Repeat_iter);
-        group_trategy.MasterNodes(procnum, nodesOfGroup, DynamicGroup, maxIteration);
+        group_trategy.MasterNodes(procnum, nodesOfGroup, DynamicGroup, maxIteration, comm);
         MPI_Finalize();
     } else {
 ////         Read training set and test set files.
@@ -2228,9 +2229,9 @@ void test_main(MPI_Comm comm) {
 //                 << "comm time:" << admm.sum_comm_ << "  "
 //                 << "cal  time:" << temp - admm.sum_comm_ << endl;
         }
+    MPI_Finalize();
 }
 
-//MPI_Finalize();
 //}
 #define LEN 5
 
@@ -2306,6 +2307,15 @@ void test_main2(MPI_Comm comm) {
     MPI_Finalize();
 }
 
+void test_main3 (MPI_Comm comm)
+{
+    int rank, size;
+    MPI_Init (NULL, NULL); /* starts MPI */
+    MPI_Comm_rank (comm, &rank); /* get current process id */
+    MPI_Comm_size (comm, &size); /* get number of processes */
+    printf( "Hello world from process %d of %d\n", rank, size);
+    MPI_Finalize();
+}
 //int main() {
 //    test_main(MPI_COMM_WORLD);
 //    return 0;

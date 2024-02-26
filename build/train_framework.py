@@ -406,8 +406,8 @@ class GroupStrategy(object):
     def changeGroup(self, data, node, fastVec, numsOfgroup, iter):
         return _train_framework.GroupStrategy_changeGroup(self, data, node, fastVec, numsOfgroup, iter)
 
-    def MasterNodes(self, procnum, nodesOfGroup, DynamicGroup, maxIteration):
-        return _train_framework.GroupStrategy_MasterNodes(self, procnum, nodesOfGroup, DynamicGroup, maxIteration)
+    def MasterNodes(self, procnum, nodesOfGroup, DynamicGroup, maxIteration, comm):
+        return _train_framework.GroupStrategy_MasterNodes(self, procnum, nodesOfGroup, DynamicGroup, maxIteration, comm)
     __swig_destroy__ = _train_framework.delete_GroupStrategy
 
 # Register GroupStrategy in _train_framework:
@@ -471,5 +471,8 @@ def test_main(comm):
 
 def test_main2(comm):
     return _train_framework.test_main2(comm)
+
+def test_main3(comm):
+    return _train_framework.test_main3(comm)
 
 
