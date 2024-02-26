@@ -2025,19 +2025,21 @@ void ADMM::group_train(clock_t start_time) {
     }
     while (k <= maxIteration) {
         // Request group generation from the group generator Send the current iteration where it is located.
-        MPI_Send(&k, 1, MPI_INT, procnum - 1, 1, MPI_COMM_WORLD);
+        cout << "fir" << k <<"-"<< myid << endl;
+        MPI_Send(&k, 1, MPI_INT, procnum - 1, 1, comm_);
         // Get the generated group.
-        MPI_Probe(procnum - 1, 2, MPI_COMM_WORLD, &status);
+        MPI_Probe(procnum - 1, 2, comm_, &status);
         MPI_Get_count(&status, MPI_INT, &nears.neighborsNums); // Get node's neighbor states.
-        MPI_Recv(nears.neighs, nears.neighborsNums, MPI_INT, procnum - 1, 2, MPI_COMM_WORLD,
+        MPI_Recv(nears.neighs, nears.neighborsNums, MPI_INT, procnum - 1, 2, comm_,
                  &status); // Receive a vector containing INT.
 //         Grouping method, can be divided into groups.
+        cout << "sec" << k <<"-"<< myid << endl;
         MPI_Group world_group;
-        MPI_Comm_group(MPI_COMM_WORLD, &world_group);
+        MPI_Comm_group(comm_, &world_group);
         MPI_Group worker_group;
         MPI_Group_incl(world_group, nears.neighborsNums, nears.neighs, &worker_group);
         MPI_Comm worker_comm;
-        MPI_Comm_create_group(MPI_COMM_WORLD, worker_group, 0, &worker_comm);
+        MPI_Comm_create_group(comm_, worker_group, 0, &worker_comm);
         comm_time = 0;
         // Torus分组
         if (k != 1) {
@@ -2085,6 +2087,7 @@ void ADMM::group_train(clock_t start_time) {
             sum_msg_temp[i] = sum_msg_[i];
         }
         comm_btime = MPI_Wtime();
+        MPI_Barrier(worker_comm);
         MPI_Allreduce(new_x_temp, sum_msg_temp, dim_, MPI_DOUBLE, MPI_SUM, worker_comm);
         // Torus synchronizaiton method.
 //        if (k % 2 == 0) {
