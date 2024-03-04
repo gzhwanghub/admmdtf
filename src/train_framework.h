@@ -688,7 +688,7 @@ public:
 
     void changeGroup(std::vector<std::vector<int>> &data, int node, std::vector<int> fastVec, int numsOfgroup, int iter);
 
-    void MasterNodes(int procnum, int nodesOfGroup, int DynamicGroup, int maxIteration, MPI_Comm comm);
+    void MasterNodes(int procnum, int nodesOfGroup, int DynamicGroup, int maxIteration);
 };
 
 class neighbors {

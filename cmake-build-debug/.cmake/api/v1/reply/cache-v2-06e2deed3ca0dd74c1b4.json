@@ -1294,6 +1294,18 @@
 			"value" : "b91b4035ecb3bb3f5760d35922531bcd"
 		},
 		{
+			"name" : "_Python3_Interpreter_REASON_FAILURE",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Interpreter reason failure"
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
 			"name" : "_Python3_LIBRARY_RELEASE",
 			"properties" : 
 			[

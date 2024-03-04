@@ -10694,7 +10694,6 @@ SWIGINTERN PyObject *_wrap_GroupStrategy_MasterNodes(PyObject *SWIGUNUSEDPARM(se
   int arg3 ;
   int arg4 ;
   int arg5 ;
-  MPI_Comm arg6 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   int val2 ;
@@ -10705,9 +10704,9 @@ SWIGINTERN PyObject *_wrap_GroupStrategy_MasterNodes(PyObject *SWIGUNUSEDPARM(se
   int ecode4 = 0 ;
   int val5 ;
   int ecode5 = 0 ;
-  PyObject *swig_obj[6] ;
+  PyObject *swig_obj[5] ;
   
-  if (!SWIG_Python_UnpackTuple(args, "GroupStrategy_MasterNodes", 6, 6, swig_obj)) SWIG_fail;
+  if (!SWIG_Python_UnpackTuple(args, "GroupStrategy_MasterNodes", 5, 5, swig_obj)) SWIG_fail;
   res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_GroupStrategy, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GroupStrategy_MasterNodes" "', argument " "1"" of type '" "GroupStrategy *""'"); 
@@ -10733,16 +10732,7 @@ SWIGINTERN PyObject *_wrap_GroupStrategy_MasterNodes(PyObject *SWIGUNUSEDPARM(se
     SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "GroupStrategy_MasterNodes" "', argument " "5"" of type '" "int""'");
   } 
   arg5 = static_cast< int >(val5);
-  {
-    MPI_Comm *ptr = (MPI_Comm *)0;
-    int res = SWIG_AsPtr_MPI_Comm(swig_obj[5], &ptr);
-    if (!SWIG_IsOK(res) || !ptr) {
-      SWIG_exception_fail(SWIG_ArgError((ptr ? res : SWIG_TypeError)), "in method '" "GroupStrategy_MasterNodes" "', argument " "6"" of type '" "MPI_Comm""'"); 
-    }
-    arg6 = *ptr;
-    if (SWIG_IsNewObj(res)) delete ptr;
-  }
-  (arg1)->MasterNodes(arg2,arg3,arg4,arg5,arg6);
+  (arg1)->MasterNodes(arg2,arg3,arg4,arg5);
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:

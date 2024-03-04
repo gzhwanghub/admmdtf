@@ -1740,7 +1740,7 @@ void GroupStrategy::changeGroup(vector<vector<int>> &data, int node, vector<int>
     data.push_back(vec);
 }
 
-void GroupStrategy::MasterNodes(int procnum, int nodesOfGroup, int DynamicGroup, int maxIteration, MPI_Comm comm) {
+void GroupStrategy::MasterNodes(int procnum, int nodesOfGroup, int DynamicGroup, int maxIteration) {
     double *node_beforeTime;
     double *node_afterTime;
     double *node_caltime; // It is judged as a slow node for the packet recorder to record a single calculation time of each node.
@@ -1768,9 +1768,9 @@ void GroupStrategy::MasterNodes(int procnum, int nodesOfGroup, int DynamicGroup,
         nodes.push_back(i);
     Group = divideGroup(nodes, (procnum - 1) / nodesOfGroup);
     while (true) {
-        MPI_Probe(MPI_ANY_SOURCE, 1, comm, &status);
+        MPI_Probe(MPI_ANY_SOURCE, 1, MPI_COMM_WORLD, &status);
         nodetemp = status.MPI_SOURCE;
-        MPI_Recv(&iter, 1, MPI_INT, nodetemp, 1, comm, &status);
+        MPI_Recv(&iter, 1, MPI_INT, nodetemp, 1, MPI_COMM_WORLD, &status);
         vector<int> tempVec;
         if (DynamicGroup == 1) {
             // Re-modify some grouping methods according to the node that sent for the first time in each iteration and the last calculation time.
@@ -1821,7 +1821,7 @@ void GroupStrategy::MasterNodes(int procnum, int nodesOfGroup, int DynamicGroup,
             sendNodes[tempIndex++] = tempVec[v];
         }
         //cout<<endl;
-        MPI_Send(sendNodes, nodesOfGroup, MPI_INT, nodetemp, 2, comm);
+        MPI_Send(sendNodes, nodesOfGroup, MPI_INT, nodetemp, 2, MPI_COMM_WORLD);
         c++;
         if (c > maxIteration * (procnum - 1)) {
             break;
@@ -1890,13 +1890,13 @@ void ADMM::CreateGroup() {
     int color_odd, color_even;
     color_odd = myid / nears.neighborsNums;
     cout << "0000000" << endl;
-    MPI_Comm_split(comm_, color_odd, myid, &SUBGRP_COMM_ODD_);
+    MPI_Comm_split(MPI_COMM_WORLD, color_odd, myid, &SUBGRP_COMM_ODD_);
     cout << "1111111" << endl;
     int subgrp_rank_odd, subgrp_size_odd;
     MPI_Comm_rank(SUBGRP_COMM_ODD_, &subgrp_rank_odd);
     MPI_Comm_size(SUBGRP_COMM_ODD_, &subgrp_size_odd);
     color_even = myid % nears.neighborsNums;
-    MPI_Comm_split(comm_, color_even, myid, &SUBGRP_COMM_EVEN_);
+    MPI_Comm_split(MPI_COMM_WORLD, color_even, myid, &SUBGRP_COMM_EVEN_);
     int subgrp_rank_even, subgrp_size_even;
     MPI_Comm_rank(SUBGRP_COMM_EVEN_, &subgrp_rank_even);
     MPI_Comm_size(SUBGRP_COMM_EVEN_, &subgrp_size_even);
@@ -2025,21 +2025,19 @@ void ADMM::group_train(clock_t start_time) {
     }
     while (k <= maxIteration) {
         // Request group generation from the group generator Send the current iteration where it is located.
-        cout << "fir" << k <<"-"<< myid << endl;
-        MPI_Send(&k, 1, MPI_INT, procnum - 1, 1, comm_);
+        MPI_Send(&k, 1, MPI_INT, procnum - 1, 1, MPI_COMM_WORLD);
         // Get the generated group.
-        MPI_Probe(procnum - 1, 2, comm_, &status);
+        MPI_Probe(procnum - 1, 2, MPI_COMM_WORLD, &status);
         MPI_Get_count(&status, MPI_INT, &nears.neighborsNums); // Get node's neighbor states.
-        MPI_Recv(nears.neighs, nears.neighborsNums, MPI_INT, procnum - 1, 2, comm_,
+        MPI_Recv(nears.neighs, nears.neighborsNums, MPI_INT, procnum - 1, 2, MPI_COMM_WORLD,
                  &status); // Receive a vector containing INT.
 //         Grouping method, can be divided into groups.
-        cout << "sec" << k <<"-"<< myid << endl;
         MPI_Group world_group;
-        MPI_Comm_group(comm_, &world_group);
+        MPI_Comm_group(MPI_COMM_WORLD, &world_group);
         MPI_Group worker_group;
         MPI_Group_incl(world_group, nears.neighborsNums, nears.neighs, &worker_group);
         MPI_Comm worker_comm;
-        MPI_Comm_create_group(comm_, worker_group, 0, &worker_comm);
+        MPI_Comm_create_group(MPI_COMM_WORLD, worker_group, 0, &worker_comm);
         comm_time = 0;
         // Torus分组
         if (k != 1) {
@@ -2068,7 +2066,7 @@ void ADMM::group_train(clock_t start_time) {
 //        }
 //        new_x_ = tron(probit, myid, new_x_, 50);
 //        new_x_ = cg(svr, new_x_, 1, 1e-4, 50);
-        new_x_ = gdNesterov(probit, new_x_, 1, 1e-4, 100);
+        new_x_ = gdNesterov(probit, new_x_, 1, 1e-4, 10);
 //        new_x_ = gd(probit, new_x_, 0.1, 100);
 //        new_x_ = gdLineSearch(svr, new_x_, 1, 1e-4, 50);
 //        new_x_ = lbfgsMin(probit, new_x_, 1, 1e-4, 50);
@@ -2087,7 +2085,7 @@ void ADMM::group_train(clock_t start_time) {
             sum_msg_temp[i] = sum_msg_[i];
         }
         comm_btime = MPI_Wtime();
-        MPI_Barrier(worker_comm);
+//        MPI_Barrier(worker_comm);
         MPI_Allreduce(new_x_temp, sum_msg_temp, dim_, MPI_DOUBLE, MPI_SUM, worker_comm);
         // Torus synchronizaiton method.
 //        if (k % 2 == 0) {
@@ -2161,10 +2159,9 @@ void test_main(MPI_Comm comm) {
 //    std::string test_data_path = properties.GetString("test_data_path");
 //
 //    // The last node acts as a group generator. No file reads are required.
-    cout << "myid=" << myid << endl;
     if (myid == procnum - 1) {
         GroupStrategy group_trategy(Repeat_iter);
-        group_trategy.MasterNodes(procnum, nodesOfGroup, DynamicGroup, maxIteration, comm);
+        group_trategy.MasterNodes(procnum, nodesOfGroup, DynamicGroup, maxIteration);
         MPI_Finalize();
     } else {
 ////         Read training set and test set files.
